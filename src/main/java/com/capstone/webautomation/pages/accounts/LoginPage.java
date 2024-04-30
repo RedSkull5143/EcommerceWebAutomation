@@ -27,5 +27,10 @@ public class LoginPage extends BasePage {
         super(webDriver);
     }
 
+    public RegistrationPage navToRegisterationPage(){
+        buttonActions.click(createAccountLinkEle);
+        return new RegistrationPage(webDriver);
+    }
+
 
 }

@@ -26,9 +26,8 @@ dependencies {
     //javafaker
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 
-
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
 }

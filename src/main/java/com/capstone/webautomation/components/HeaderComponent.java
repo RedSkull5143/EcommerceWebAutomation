@@ -1,5 +1,6 @@
 package com.capstone.webautomation.components;
 
+import com.capstone.webautomation.actions.ButtonAction;
 import com.capstone.webautomation.pages.*;
 import com.capstone.webautomation.pages.accounts.LoginPage;
 import com.capstone.webautomation.pages.accounts.ProfilePage;
@@ -32,6 +33,7 @@ public class HeaderComponent extends BasePage {
 
     public HeaderComponent(WebDriver webDriver) {
         super(webDriver);
+        this.buttonActions=new ButtonAction(webDriver);
     }
 
     public HomePage navToHomePageUsingLogo(){
@@ -62,6 +64,11 @@ public class HeaderComponent extends BasePage {
     public LoginPage navToLoginPage(){
         buttonActions.click(profileBtnEle);
         return new LoginPage(webDriver);
+    }
+
+    public ProfilePage navToProfilePage(){
+        buttonActions.click(profileBtnEle);
+        return new ProfilePage(webDriver);
     }
 
     public CartPage navToCartPage(){
