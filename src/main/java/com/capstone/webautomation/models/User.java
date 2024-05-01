@@ -26,6 +26,16 @@ public class User {
                 .build();
     }
 
+    public User userWithoutEmail(){
+        User user=this.init();
+        user.setEmailID("");
+        return user;
+    }
 
+    public User userWithoutPassword() {
+        User user=this.init();
+        user.setPassword("");
+        return user;
+    }
 
 }

@@ -19,6 +19,9 @@ public class RegistrationPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"create_customer\"]/button")
     private WebElement createBtn;
 
+    @FindBy(xpath = "//*[@id=\"create_customer\"]/ul/li/a")
+    private WebElement errorMessageEle;
+
     public HomePage createAccount(User user){
         textBox.type(firstName, user.getFirst_name());
         textBox.type(lastName, user.getLast_name());
@@ -31,4 +34,9 @@ public class RegistrationPage extends BasePage {
     public RegistrationPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    public String errorMessage(){
+        return webActions.getText(errorMessageEle);
+    }
+
 }
