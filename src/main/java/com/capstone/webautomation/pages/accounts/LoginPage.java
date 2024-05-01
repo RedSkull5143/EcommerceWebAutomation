@@ -1,6 +1,7 @@
 package com.capstone.webautomation.pages.accounts;
 
 import com.capstone.webautomation.actions.WebActions;
+import com.capstone.webautomation.models.User;
 import com.capstone.webautomation.pages.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,15 +23,24 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"customer_login\"]/a[2]")
     private WebElement createAccountLinkEle;
-
+    @FindBy(xpath = "//*[@id=\"customer_login\"]/div[@class='errors']//li")
+    private WebElement errorBoxEle;
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    public ProfilePage login(User user){
+        textBox.type(emailIdBox, user.getEmailID());
+        textBox.type(passwordBox, user.getPassword());
+        buttonActions.click(signInBtnEle);
+        return new ProfilePage(webDriver);
+    }
     public RegistrationPage navToRegisterationPage(){
         buttonActions.click(createAccountLinkEle);
         return new RegistrationPage(webDriver);
     }
 
-
+    public String getErrorMessage(){
+        return webActions.getText(errorBoxEle);
+    }
 }

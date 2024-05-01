@@ -38,4 +38,21 @@ public class User {
         return user;
     }
 
+    public User userWithValidCredentials(){
+        return User.builder()
+                .first_name("Om")
+                .last_name("Shinde")
+                .emailID("omshinde@gmail.com")
+                .password("OmShinde@1234")
+                .build();
+    }
+
+    public User userWithInvalidCredentials(){
+        return User.builder()
+                .first_name("Om")
+                .last_name("Shinde")
+                .emailID("omshnde@gmail.com")
+                .password("OmShinde@1234")
+                .build();
+    }
 }
