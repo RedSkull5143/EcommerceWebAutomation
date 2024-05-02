@@ -3,15 +3,38 @@ package com.capstone.webautomation.pages;
 import com.capstone.webautomation.models.Cart;
 import com.capstone.webautomation.utility.CartItemExtractor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class CartPage extends BasePage{
     CartItemExtractor cartItemExtractor=new CartItemExtractor(webDriver);
 
-    public void getDetails(){
-        cartItemExtractor.getCartDetails();
+    @FindBy(xpath = "//*[@id=\"Remove-1\"]/a")
+    private WebElement removeProductBtn;
+
+
+
+    public void removeProduct(){
+        buttonActions.click(removeProductBtn);
+        removeProductFromCart();
     }
+    public void removeProductFromCart(String productName) {
+        List<Cart> cartItems = getDetails();
+        for (int i = 0; i < cartItems.size(); i++) {
+            Cart cartItem = cartItems.get(i);
+            if (cartItem.getProductName().equals(productName)) {
+                cartItems.remove(i);
+                break;
+            }
+        }
+    }
+    public List<Cart> getDetails(){
+        return cartItemExtractor.getCartDetails();
+    }
+
+
 
     public void printCartDetails() {
         List<Cart> cartItems = cartItemExtractor.getCartDetails();

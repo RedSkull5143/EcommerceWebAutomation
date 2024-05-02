@@ -24,7 +24,6 @@ public class CartItemExtractor {
                 String productName = tableRow.findElement(By.xpath("//*[@id=\"CartItem-1\"]/td[2]/a")).getText().trim();
                 String sizeInfo = tableRow.findElement(By.xpath("//*[@id=\"CartItem-1\"]/td[2]/dl/div/dd")).getText().trim();
 //                WebElement quantityElement = tableRow.findElement(By.xpath("//*[@id=\"Quantity-1\"]"));
-
                 // Assuming quantity is not directly available as text
 //                String quantity = String.valueOf(quantityElement != null ? Integer.parseInt(quantityElement.getText().trim()) : 1);
 

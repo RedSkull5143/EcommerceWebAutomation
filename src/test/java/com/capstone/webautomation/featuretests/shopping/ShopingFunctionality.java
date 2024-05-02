@@ -32,20 +32,6 @@ public class ShopingFunctionality extends BaseTest {
     }
 
     @Test
-    public void addProductAndViewCart() {
-        SearchContent searchContent=SearchContent.builder().build().init();
-        User user= User.builder().build().userWithValidCredentials();
-        HomePage homePage=new HomePage(getWebDriver());
-        ProfilePage loginPage = homePage.getHeader().navToLoginPage().login(user);
-
-        //act
-        SearchedProductPage searchedProductPage = homePage.getHeader().openSearchModal().searchResult(searchContent.getInput());
-        ViewProducts viewProducts=new ViewProducts(getWebDriver());
-        ViewProductPage viewProductPage = viewProducts.selectProduct();
-        CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
-
-    }
-    @Test
     public void userIsAbleToAddProductAfterSearching()  {
         SearchContent searchContent= SearchContent.builder().build().init();
         HomePage homePage=new HomePage(getWebDriver());
@@ -56,5 +42,17 @@ public class ShopingFunctionality extends BaseTest {
         CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
         cartPage.getDetails();
         cartPage.printCartDetails();
+    }
+
+    @Test
+    public void deleteProductFromCart(){
+        SearchContent searchContent= SearchContent.builder().build().init();
+        HomePage homePage=new HomePage(getWebDriver());
+        SearchModal searchModal = homePage.getHeader().openSearchModal();
+        searchModal.searchResult(searchContent.getInput());
+        ViewProducts viewProduct=new ViewProducts(getWebDriver());
+        ViewProductPage viewProductPage = viewProduct.selectProduct();
+        CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
+
     }
 }
