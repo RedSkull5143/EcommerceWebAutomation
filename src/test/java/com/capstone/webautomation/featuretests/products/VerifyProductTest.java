@@ -3,6 +3,7 @@ package com.capstone.webautomation.featuretests.products;
 import com.capstone.webautomation.BaseTest;
 import com.capstone.webautomation.actions.SearchContent;
 import com.capstone.webautomation.actions.VerifySearch;
+import com.capstone.webautomation.actions.ZoomImage;
 import com.capstone.webautomation.components.SearchModal;
 import com.capstone.webautomation.data.client.ProductDataClient;
 import com.capstone.webautomation.models.ChoosedProduct;
@@ -39,5 +40,26 @@ public class VerifyProductTest extends BaseTest {
         Assert.assertTrue(productName.contains(name));
         Assert.assertTrue(sellerName.contains(sellerName));
         Assert.assertTrue(regularPrice.contains(regularPrice));
+     }
+
+     @Test(description = "Verify that clicking on the image zooms it to an enlarged view")
+    public void userIsAbleToZoomImage(){
+         SearchContent searchContent=SearchContent.builder().build().init();
+         HomePage homePage=new HomePage(getWebDriver());
+         SearchModal searchModal = homePage.getHeader().openSearchModal();
+         ProductDataClient productDataClient=new ProductDataClient();
+
+         //act
+         ProductsPage productsPage = searchModal.searchResult(searchContent.getInput());
+         WebElement productImage= getWebDriver().findElement(By.xpath("//*[@id=\"product-grid\"]/ul/li/div"));
+         productImage.click();
+
+         ZoomImage zoomImage=new ZoomImage(getWebDriver());
+         zoomImage.zoomImageFunction();
+
+         //assert
+//         System.out.println(zoomImage.getZoomedHeight());
+//         System.out.println(zoomImage.getOriginalHeight());
+         Assert.assertTrue(zoomImage.getZoomedWidth()> zoomImage.getOriginalWidth());
      }
 }
