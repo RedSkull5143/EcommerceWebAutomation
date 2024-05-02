@@ -1,4 +1,4 @@
-package com.capstone.webautomation.actions;
+package com.capstone.webautomation.utility;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -2,14 +2,12 @@ package com.capstone.webautomation.featuretests.products;
 
 import com.capstone.webautomation.BaseTest;
 import com.capstone.webautomation.actions.SearchContent;
-import com.capstone.webautomation.actions.VerifySearch;
-import com.capstone.webautomation.actions.ZoomImage;
-import com.capstone.webautomation.components.SearchModal;
+import com.capstone.webautomation.utility.ZoomImage;
+import com.capstone.webautomation.modals.SearchModal;
 import com.capstone.webautomation.data.client.ProductDataClient;
 import com.capstone.webautomation.models.ChoosedProduct;
-import com.capstone.webautomation.models.Product;
 import com.capstone.webautomation.pages.HomePage;
-import com.capstone.webautomation.pages.ProductsPage;
+import com.capstone.webautomation.pages.SearchedProductPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -27,7 +25,7 @@ public class VerifyProductTest extends BaseTest {
         String name = productDataClient.getProduct().getName();
 
         //act
-        ProductsPage productsPage = searchModal.searchResult(searchContent.getInput());
+        SearchedProductPage searchedProductPage = searchModal.searchResult(searchContent.getInput());
         WebElement productImage= getWebDriver().findElement(By.xpath("//*[@id=\"product-grid\"]/ul/li/div"));
         productImage.click();
 
@@ -50,7 +48,7 @@ public class VerifyProductTest extends BaseTest {
          ProductDataClient productDataClient=new ProductDataClient();
 
          //act
-         ProductsPage productsPage = searchModal.searchResult(searchContent.getInput());
+         SearchedProductPage searchedProductPage = searchModal.searchResult(searchContent.getInput());
          WebElement productImage= getWebDriver().findElement(By.xpath("//*[@id=\"product-grid\"]/ul/li/div"));
          productImage.click();
 

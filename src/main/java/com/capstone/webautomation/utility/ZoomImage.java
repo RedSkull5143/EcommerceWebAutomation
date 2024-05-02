@@ -1,5 +1,6 @@
-package com.capstone.webautomation.actions;
+package com.capstone.webautomation.utility;
 
+import com.capstone.webautomation.actions.WebActions;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ZoomImage extends WebActions{
+public class ZoomImage extends WebActions {
 
     private int originalWidth, originalHeight, zoomedWidth, zoomedHeight;
     @FindBy(xpath = "//*[@id=\"shopify-section-template--15328405717213__main\"]/section/div/div[1]/slider-component/ul/li[1]/modal-opener/button")

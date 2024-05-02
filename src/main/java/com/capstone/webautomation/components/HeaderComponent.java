@@ -1,6 +1,7 @@
 package com.capstone.webautomation.components;
 
 import com.capstone.webautomation.actions.ButtonAction;
+import com.capstone.webautomation.modals.SearchModal;
 import com.capstone.webautomation.pages.*;
 import com.capstone.webautomation.pages.accounts.LoginPage;
 import com.capstone.webautomation.pages.accounts.ProfilePage;
