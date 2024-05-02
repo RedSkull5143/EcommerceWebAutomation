@@ -24,7 +24,6 @@ public class VerifyProductTest extends BaseTest {
         SearchModal searchModal = homePage.getHeader().openSearchModal();
         ProductDataClient productDataClient=new ProductDataClient();
         String name = productDataClient.getProduct().getName();
-        System.out.println(name);
 
         //act
         ProductsPage productsPage = searchModal.searchResult(searchContent.getInput());
@@ -32,10 +31,13 @@ public class VerifyProductTest extends BaseTest {
         productImage.click();
 
         ChoosedProduct choosedProduct=new ChoosedProduct(getWebDriver());
-        String productName = choosedProduct.getProductName().replace(" ", "");
+        String productName = choosedProduct.getProductName();
         String sellerName=choosedProduct.getSellerName();
+        String regularPrice=choosedProduct.getPrice();
 
         //assert
         Assert.assertTrue(productName.contains(name));
+        Assert.assertTrue(sellerName.contains(sellerName));
+        Assert.assertTrue(regularPrice.contains(regularPrice));
      }
 }

@@ -1,28 +1,31 @@
 package com.capstone.webautomation.data.mappers;
-import com.capstone.webautomation.data.mappers.DataMapper;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 
-import java.io.File;
+import com.capstone.webautomation.data.mappers.DataMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
 
 public class JSONDataMapper<T> implements DataMapper<T> {
     @Override
     public T map(String filepath, String key, Class<T> tClass) {
-        Gson gson=new Gson();
         try {
-            Map jsonMap = gson.fromJson(new FileReader(filepath), Map.class);
-            LinkedTreeMap jsonElement = (LinkedTreeMap) jsonMap.get(key);
-            if(Objects.isNull(jsonElement)) throw new FileNotFoundException();
-            return gson.fromJson(jsonElement.toString(), tClass);
+            // Parse the JSON file using JsonParser
+            JsonElement jsonElement = JsonParser.parseReader(new FileReader(filepath));
+
+            // Navigate to the specified key
+            JsonElement keyElement = jsonElement.getAsJsonObject().get(key);
+
+            // Convert the key element back to JSON string
+            String jsonString = keyElement.toString();
+
+            // Deserialize the JSON string to the desired class
+            Gson gson = new Gson();
+            return gson.fromJson(jsonString, tClass);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(String.format("Failed to find data for key %s in file %s or filepath %s itself is wrong", key, filepath, filepath));
+            throw new RuntimeException("Failed to find or read the file: " + filepath, e);
         }
     }
 }

@@ -31,4 +31,7 @@ public class ChoosedProduct extends BasePage {
     public String getSellerName(){
         return webActions.getText(seller);
     }
+    public String getPrice(){
+        return webActions.getText(regularPrice);
+    }
 }
