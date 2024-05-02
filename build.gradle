@@ -26,6 +26,14 @@ dependencies {
     //javafaker
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 
+    //ObjectMapper
+    implementation group: 'com.konghq', name: 'unirest-objectmapper-jackson', version: '4.2.9'
+
+    //gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+    
+
+
 }
 
 test {
