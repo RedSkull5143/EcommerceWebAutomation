@@ -54,6 +54,7 @@ public class ShopingFunctionality extends BaseTest {
         ViewProducts viewProduct=new ViewProducts(getWebDriver());
         ViewProductPage viewProductPage = viewProduct.selectProduct();
         CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
-
+        cartPage.getDetails();
+        cartPage.printCartDetails();
     }
 }
