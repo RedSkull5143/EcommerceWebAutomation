@@ -52,6 +52,8 @@ public class ShopingFunctionality extends BaseTest {
         SearchModal searchModal = homePage.getHeader().openSearchModal();
         searchModal.searchResult(searchContent.getInput());
         ViewProducts viewProduct=new ViewProducts(getWebDriver());
-        viewProduct.selectProduct();
+        ViewProductPage viewProductPage = viewProduct.selectProduct();
+        CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
+
     }
 }
