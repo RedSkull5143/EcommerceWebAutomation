@@ -21,7 +21,16 @@ public class FeedBack {
         return FeedBack.builder()
                 .name(faker.name().fullName())
                 .emailID(faker.internet().emailAddress())
-                .phoneNo(faker.phoneNumber().cellPhone())
+                .phoneNo("8625971620")
+                .comment(faker.lorem().paragraph())
+                .build();
+    }
+    public FeedBack inValidDetails(){
+        Faker faker=new Faker();
+        return FeedBack.builder()
+                .name(faker.name().fullName())
+                .emailID("")
+                .phoneNo("8625971620")
                 .comment(faker.lorem().paragraph())
                 .build();
     }

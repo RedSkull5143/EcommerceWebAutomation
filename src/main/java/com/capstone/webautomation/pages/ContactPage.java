@@ -24,7 +24,7 @@ public class ContactPage extends BasePage{
     @FindBy(id = "ContactForm-body")
     private WebElement comment;
 
-    @FindBy(css = ".contact_button button[type=\"submit\"]")
+    @FindBy(xpath = "//button[normalize-space()='Send']")
     private WebElement sendBtn;
 
     @FindBy(xpath = "//*[@id=\"ContactForm\"]/div[1]")
@@ -40,14 +40,14 @@ public class ContactPage extends BasePage{
         return webActions.getText(successMessage);
     }
 
-    public void sendFeedback(FeedBack feedBack){
+    public ContactPage sendFeedback(FeedBack feedBack){
         textBox.type(name, feedBack.getName());
         textBox.type(emailID, feedBack.getEmailID());
         textBox.type(phoneNo, feedBack.getPhoneNo());
         textBox.type(comment, feedBack.getComment());
 //        buttonActions.click(side);
-        sendBtn.submit();
-        new ContactPage(webDriver);
+        buttonActions.click(sendBtn);
+        return new ContactPage(webDriver);
     }
     public ContactPage(WebDriver webDriver) {
         super(webDriver);

@@ -19,15 +19,26 @@ public class ContactFormTest extends BaseTest{
     }
 
     @Test
-    public void userIsAbleToSubmitContactFormWithValidData() throws InterruptedException {
+    public void userIsAbleToSubmitContactFormWithValidData()  {
         FeedBack feedBack=FeedBack.builder().build().validDetails();
         HomePage homePage=new HomePage(getWebDriver());
         homePage.getHeader().navToContactPage();
         ContactPage contactPage=new ContactPage(getWebDriver());
         contactPage.sendFeedback(feedBack);
-        Thread.sleep(5000);
         String successMessage = contactPage.getSuccessMessage();
         System.out.println(successMessage);
         Assert.assertTrue(successMessage.contains("Thanks for contacting us. We'll get back to you as soon as possible."));
     }
+    @Test
+    public void userIsAbleToSubmitContactFormWithInValidData() {
+        FeedBack feedBack=FeedBack.builder().build().inValidDetails();
+        HomePage homePage=new HomePage(getWebDriver());
+        homePage.getHeader().navToContactPage();
+        ContactPage contactPage=new ContactPage(getWebDriver());
+        contactPage.sendFeedback(feedBack);
+        String successMessage = contactPage.getSuccessMessage();
+        System.out.println(successMessage);
+        Assert.assertTrue(successMessage.contains("Thanks for contacting us. We'll get back to you as soon as possible."));
+    }
+
 }
