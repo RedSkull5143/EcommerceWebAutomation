@@ -17,4 +17,17 @@ public class SearchContent {
                 .input("Dress")
                 .build();
     }
+
+    public SearchContent shoes(){
+        return SearchContent.builder()
+                .input("Shoes")
+                .build();
+    }
+
+    public String selectDress(){
+        return "Sheer Dress";
+    }
+
+
+
 }

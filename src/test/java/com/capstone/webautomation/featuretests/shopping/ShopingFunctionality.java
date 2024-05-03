@@ -3,6 +3,7 @@ package com.capstone.webautomation.featuretests.shopping;
 import com.capstone.webautomation.BaseTest;
 import com.capstone.webautomation.actions.SearchContent;
 import com.capstone.webautomation.modals.SearchModal;
+import com.capstone.webautomation.models.Cart;
 import com.capstone.webautomation.models.User;
 import com.capstone.webautomation.pages.CartPage;
 import com.capstone.webautomation.pages.HomePage;
@@ -10,9 +11,12 @@ import com.capstone.webautomation.pages.SearchedProductPage;
 import com.capstone.webautomation.pages.ViewProductPage;
 import com.capstone.webautomation.pages.accounts.LoginPage;
 import com.capstone.webautomation.pages.accounts.ProfilePage;
+import com.capstone.webautomation.utility.CartItemExtractor;
 import com.capstone.webautomation.utility.ViewProducts;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class ShopingFunctionality extends BaseTest {
 
@@ -40,8 +44,13 @@ public class ShopingFunctionality extends BaseTest {
         ViewProducts viewProduct=new ViewProducts(getWebDriver());
         ViewProductPage viewProductPage = viewProduct.selectProduct();
         CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
-        cartPage.getDetails();
         cartPage.printCartDetails();
+        List<String> productNames = cartPage.getProductNames();
+
+        String productAdded = searchContent.selectDress();
+
+        Assert.assertFalse(productNames.isEmpty());
+        Assert.assertTrue(productNames.contains(productAdded));
     }
 
     @Test

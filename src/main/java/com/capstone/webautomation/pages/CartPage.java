@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage extends BasePage{
@@ -18,7 +19,7 @@ public class CartPage extends BasePage{
 
     public void removeProduct(){
         buttonActions.click(removeProductBtn);
-        removeProductFromCart();
+//        removeProductFromCart(    );
     }
     public void removeProductFromCart(String productName) {
         List<Cart> cartItems = getDetails();
@@ -34,7 +35,14 @@ public class CartPage extends BasePage{
         return cartItemExtractor.getCartDetails();
     }
 
-
+    public List<String> getProductNames() {
+        List<Cart> cartItems = cartItemExtractor.getCartDetails();
+        List<String> productNames = new ArrayList<>();
+        for (Cart cartItem : cartItems) {
+            productNames.add(cartItem.getProductName());
+        }
+        return productNames;
+    }
 
     public void printCartDetails() {
         List<Cart> cartItems = cartItemExtractor.getCartDetails();
