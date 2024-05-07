@@ -18,5 +18,4 @@ public class SearchModal extends HeaderComponent {
         inputBoxEle.submit();
         return new SearchedProductPage(webDriver);
     }
-
 }

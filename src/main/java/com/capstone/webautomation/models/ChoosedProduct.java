@@ -1,12 +1,6 @@
 package com.capstone.webautomation.models;
 
-import com.capstone.webautomation.actions.WebActions;
 import com.capstone.webautomation.pages.BasePage;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

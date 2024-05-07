@@ -24,6 +24,15 @@ public class SearchContent {
                 .build();
     }
 
+    public SearchContent jacket(){
+        return SearchContent.builder()
+                .input("Jacket")
+                .build();
+    }
+    public String selectJacket(){
+        return "Reasonable Jacket";
+    }
+
     public String selectDress(){
         return "Sheer Dress";
     }

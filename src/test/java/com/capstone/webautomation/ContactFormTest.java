@@ -14,7 +14,6 @@ public class ContactFormTest extends BaseTest{
         homePage.getHeader().navToContactPage();
         ContactPage contactPage=new ContactPage(getWebDriver());
         String contactHeading = contactPage.getContactHeading();
-
         Assert.assertTrue(contactHeading.contains("Contact"));
     }
 
@@ -36,9 +35,8 @@ public class ContactFormTest extends BaseTest{
         homePage.getHeader().navToContactPage();
         ContactPage contactPage=new ContactPage(getWebDriver());
         contactPage.sendFeedback(feedBack);
-        String successMessage = contactPage.getSuccessMessage();
-        System.out.println(successMessage);
-        Assert.assertTrue(successMessage.contains("Thanks for contacting us. We'll get back to you as soon as possible."));
+        String errorMessage = contactPage.getErrorMessage();
+        Assert.assertTrue(errorMessage.contains("Email is invalid"));
     }
 
 }

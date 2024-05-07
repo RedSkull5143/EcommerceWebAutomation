@@ -50,7 +50,6 @@ public class ViewProductPage extends BasePage{
 
     public CartModal addToCart(){
         buttonActions.click(addToCartBtn);
-
         return new CartModal(webDriver);
     }
 

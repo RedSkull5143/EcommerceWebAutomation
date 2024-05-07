@@ -32,12 +32,19 @@ public class ContactPage extends BasePage{
 
     @FindBy(xpath = "//*[@id=\"shopify-section-template--15328405586141__main\"]/div/h1")
     private WebElement side;
+    @FindBy(css = "a[class='link']")
+    private WebElement errorMessage;
+
     public String getContactHeading() {
         return webActions.getText(contactHeading);
     }
 
     public String getSuccessMessage() {
         return webActions.getText(successMessage);
+    }
+
+    public String getErrorMessage(){
+        return webActions.getText(errorMessage);
     }
 
     public ContactPage sendFeedback(FeedBack feedBack){

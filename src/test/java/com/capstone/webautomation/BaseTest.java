@@ -2,6 +2,7 @@ package com.capstone.webautomation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -12,7 +13,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp(){
-        WebDriver webDriver=new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        WebDriver webDriver = new ChromeDriver(options);
         driverThreadLocal.set(webDriver);
         launch();
         driverThreadLocal.get().manage().window().maximize();

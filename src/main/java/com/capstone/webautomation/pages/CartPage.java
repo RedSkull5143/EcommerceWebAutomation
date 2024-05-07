@@ -15,6 +15,8 @@ public class CartPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"Remove-1\"]/a")
     private WebElement removeProductBtn;
 
+    @FindBy(xpath = "//button[@id='checkout']")
+    private WebElement checkOutBtn;
 
 
     public void removeProduct(){
@@ -56,6 +58,11 @@ public class CartPage extends BasePage{
     }
     public String getCurrentURL(){
         return webDriver.getCurrentUrl();
+    }
+
+    public BillingPage clickCheckOutBtn(){
+        buttonActions.click(checkOutBtn);
+        return new BillingPage(webDriver);
     }
     public CartPage(WebDriver webDriver) {
         super(webDriver);

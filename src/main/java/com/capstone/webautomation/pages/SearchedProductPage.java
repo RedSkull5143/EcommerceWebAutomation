@@ -43,7 +43,6 @@ public class SearchedProductPage extends BasePage{
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
-
     private int getTotalPages(){
         return pages.size();
     }

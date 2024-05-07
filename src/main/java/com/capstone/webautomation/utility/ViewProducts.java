@@ -32,5 +32,4 @@ public class ViewProducts extends BasePage {
         super(webDriver);
     }
 
-
 }
