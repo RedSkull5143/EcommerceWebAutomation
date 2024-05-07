@@ -37,6 +37,4 @@ public class SearchContent {
         return "Sheer Dress";
     }
 
-
-
 }

@@ -33,5 +33,13 @@ public class Tip extends BaseTest{
         System.out.println(billingPage.totalAmount());
         System.out.println(billingPage.autoTotalAmount());
         Assert.assertEquals(billingPage.autoTotalAmount(),billingPage.totalAmount());
+
+        billingPage.selectPayment();
+        billingPage.completeOrder();
+
+        String confirmationMessage = billingPage.getConfirmationMessage();
+        Assert.assertTrue(confirmationMessage.contains("Your order is confirmed"));
+
+
     }
 }

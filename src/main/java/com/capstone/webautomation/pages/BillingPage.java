@@ -4,10 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SplittableRandom;
+
 
 public class BillingPage extends BasePage{
 
@@ -34,6 +38,16 @@ public class BillingPage extends BasePage{
 
     @FindBy(xpath = "//*[@id=\"tipping_list-tipping_list_options-collapsible\"]/div/div/div/div[2]/div/button")
     private WebElement updateTipBtn;
+
+    @FindBy(xpath = "//*[@id=\"basic\"]/div/div[2]/label")
+    private WebElement codBtn;
+
+    @FindBy(xpath = "//*[@id=\"pay-button-container\"]/div/div/button")
+    private WebElement completeOrderBtn;
+
+    @FindBy(xpath = "//*[@id=\"checkout-main\"]/div/div/div[2]/div/div[1]/section[1]/div[1]/h2")
+    private WebElement confirmationMessage;
+
     public String getPaymentText(){
         return webActions.getText(paymentTextEle);
     }
@@ -64,7 +78,8 @@ public class BillingPage extends BasePage{
     public double tipAmount() throws InterruptedException {
         double tipamount = 0;
         buttonActions.click(five);
-        Thread.sleep(3000);
+        WebDriverWait webDriverWait=new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait.until(ExpectedConditions.visibilityOf(taxes));
         WebElement buttonWithAriaPressedTrue = null;
         List<WebElement> allButtons = tipButtonsEle.findElements(By.tagName("button"));
         for (WebElement button : allButtons) {
@@ -135,5 +150,20 @@ public class BillingPage extends BasePage{
         String numericStr = value.replaceAll("[^0-9.]", "");
         double total = Double.parseDouble(numericStr);
         return total;
+    }
+
+    public void selectPayment(){
+        //for credit card
+
+        //cod
+        buttonActions.click(codBtn);
+    }
+
+    public void completeOrder(){
+        buttonActions.click(completeOrderBtn);
+    }
+
+    public String getConfirmationMessage() {
+        return webActions.getText(confirmationMessage);
     }
 }
