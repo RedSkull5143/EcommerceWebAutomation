@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 public class Tip extends BaseTest{
     @Test
-    public void completeCheckOutProcess() throws InterruptedException {
+    public void defaultTip() throws InterruptedException {
         SearchContent searchContent= SearchContent.builder().build().init();
         User user= User.builder().build().userWithValidCredentials();
         HomePage homePage=new HomePage(getWebDriver());
@@ -22,10 +22,16 @@ public class Tip extends BaseTest{
         ViewProductPage viewProductPage = viewProducts.selectProduct();
         CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
         BillingPage billingPage = cartPage.clickCheckOutBtn();
-//        Thread.sleep(5000);
+        Thread.sleep(5000);
         String paymentText = billingPage.getPaymentText();
         Assert.assertTrue(paymentText.contains("Payment"));
+//        System.out.println(billingPage.tipAmount());
+        System.out.println(billingPage.getSubTotal());
+        System.out.println(billingPage.offer());
+        System.out.println(billingPage.taxValue());
+        System.out.println(billingPage.tipAmount());
+        System.out.println(billingPage.totalAmount());
+        System.out.println(billingPage.autoTotalAmount());
         Assert.assertEquals(billingPage.autoTotalAmount(),billingPage.totalAmount());
-
     }
 }

@@ -26,9 +26,14 @@ public class BillingPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"tipping_list-tipping_list_options-collapsible\"]/div/div/div/div[1]/div/div")
     private WebElement tipButtonsEle;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div/aside/div/section/div/section/div[2]/div[7]/div[2]/div/div/strong")
+    @FindBy(xpath = "//strong[@class='_19gi7yt0 _19gi7ytr _1fragemp5 _19gi7yt1 notranslate']")
     private WebElement totalAmountEle;
 
+    @FindBy(id = "TipsInput")
+    private WebElement customTipInput;
+
+    @FindBy(xpath = "//*[@id=\"tipping_list-tipping_list_options-collapsible\"]/div/div/div/div[2]/div/button")
+    private WebElement updateTipBtn;
     public String getPaymentText(){
         return webActions.getText(paymentTextEle);
     }
@@ -79,6 +84,27 @@ public class BillingPage extends BasePage{
                 tipamount=0+valueForTip();
             }
         }
+//        System.out.println(tipamount);
+
+//        textBox.type(customTipInput,10);
+//        buttonActions.click(updateTipBtn);
+//        String text = webActions.getText(customTipInput);
+//        System.out.println(text);
+//
+//        if (text != null && !text.isEmpty()) {
+//            try {
+//                double customTipAmount = Double.parseDouble(text);
+//                if (customTipAmount >= 0) {
+//                    tipamount = customTipAmount;
+//                } else {
+//                    System.err.println("Custom tip amount cannot be negative: " + customTipAmount);
+//                }
+//            } catch (NumberFormatException e) {
+//                System.err.println("Invalid custom tip amount: " + text);
+//            }
+//        }
+//
+//        System.out.println(tipamount);
         taxValue();
         return tipamount;
     }
@@ -99,7 +125,7 @@ public class BillingPage extends BasePage{
     public double totalAmount() throws InterruptedException {
         Thread.sleep(3000);
         double totalAmount=0;
-        System.out.println(getSubTotal());
+//        System.out.println(getSubTotal());
         totalAmount=getSubTotal()+tipAmount()+taxValue()-offer();
         return Math.round(totalAmount * 100.0) / 100.0;
     }
