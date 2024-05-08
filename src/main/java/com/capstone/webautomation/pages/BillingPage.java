@@ -78,8 +78,10 @@ public class BillingPage extends BasePage{
     public double tipAmount() throws InterruptedException {
         double tipamount = 0;
         buttonActions.click(five);
+
         WebDriverWait webDriverWait=new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriverWait.until(ExpectedConditions.visibilityOf(taxes));
+
         WebElement buttonWithAriaPressedTrue = null;
         List<WebElement> allButtons = tipButtonsEle.findElements(By.tagName("button"));
         for (WebElement button : allButtons) {
@@ -121,9 +123,20 @@ public class BillingPage extends BasePage{
 //
 //        System.out.println(tipamount);
         taxValue();
+
         return tipamount;
     }
 
+    public double getTipDisplayed() {
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        WebElement tipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/div/div[1]/div/div[2]/div/aside/div/section/div/section/div[2]/div[6]/div[2]/span")));
+
+        String value = webActions.getText(tipElement);
+        String numericStr = value.replaceAll("[^0-9.]", "");
+        double tipDisplayed = Double.parseDouble(numericStr);
+
+        return tipDisplayed;
+    }
     public double taxValue(){
         String value=webActions.getText(taxes);
         String numericStr = value.replaceAll("[^0-9.]", "");

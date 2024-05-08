@@ -34,7 +34,7 @@ public class SearchContent {
     }
 
     public String selectDress(){
-        return "Sheer Dress";
+        return "Bell Dress";
     }
 
 }

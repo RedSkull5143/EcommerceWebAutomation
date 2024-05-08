@@ -33,13 +33,24 @@ public class Tip extends BaseTest{
         System.out.println(billingPage.totalAmount());
         System.out.println(billingPage.autoTotalAmount());
         Assert.assertEquals(billingPage.autoTotalAmount(),billingPage.totalAmount());
-
         billingPage.selectPayment();
         billingPage.completeOrder();
-
         String confirmationMessage = billingPage.getConfirmationMessage();
         Assert.assertTrue(confirmationMessage.contains("Your order is confirmed"));
-
-
     }
+    @Test
+    public void verifyTipRemainPersistent() throws InterruptedException {
+        SearchContent searchContent= SearchContent.builder().build().init();
+        User user= User.builder().build().userWithValidCredentials();
+        HomePage homePage=new HomePage(getWebDriver());
+        homePage.getHeader().navToLoginPage().login(user);
+        homePage.getHeader().openSearchModal().searchResult(searchContent.getInput());
+        ViewProducts viewProducts=new ViewProducts(getWebDriver());
+        ViewProductPage viewProductPage = viewProducts.selectProduct();
+        CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
+        BillingPage billingPage = cartPage.clickCheckOutBtn();
+        Assert.assertEquals(billingPage.getTipDisplayed(),billingPage.tipAmount());
+    }
+
+
 }
