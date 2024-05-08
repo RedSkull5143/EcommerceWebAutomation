@@ -1,6 +1,7 @@
 package com.capstone.webautomation.pages;
 
 import com.capstone.webautomation.modals.CartModal;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +19,14 @@ public class ViewProductPage extends BasePage{
 
     @FindBy(className = "product__title")
     private WebElement productTitle;
+
+    @Getter
+    @FindBy(xpath = "//*[@id=\"product-form-template--15328405717213__main\"]/div/div/dynamic-checkout/div/shopify-buy-it-now-button/button")
+    private WebElement buyNowBtn;
+
+    @Getter
+    @FindBy(xpath = "//*[@id=\"product-form-template--15328405717213__main\"]/div/button")
+    private WebElement soldOutBtn;
 
     private WebElement selectedRadio = null;
     List<WebElement> sizeRadioButtons = webDriver.findElements(By.name("Size"));

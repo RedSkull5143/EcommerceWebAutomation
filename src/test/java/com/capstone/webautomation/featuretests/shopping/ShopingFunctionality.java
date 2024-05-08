@@ -46,9 +46,7 @@ public class ShopingFunctionality extends BaseTest {
         CartPage cartPage = viewProductPage.addToCart().viewMyCartClick();
         cartPage.printCartDetails();
         List<String> productNames = cartPage.getProductNames();
-
         String productAdded = searchContent.selectDress();
-
         Assert.assertFalse(productNames.isEmpty());
         Assert.assertTrue(productNames.contains(productAdded));
     }
